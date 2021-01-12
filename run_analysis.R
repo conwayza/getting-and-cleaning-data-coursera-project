@@ -1,5 +1,6 @@
 library(reshape2)
 library(tidyr)
+library(dplyr)
 
 filename <- "getdata_projectfiles_UCI HAR Dataset.zip"
 
