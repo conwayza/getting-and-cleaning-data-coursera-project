@@ -25,11 +25,15 @@ test <- cbind(testActivites, testSubjects, test)
 
 #Combining the sets
 combinedSets <- rbind(train, test)
-colnames(combinedSets) <- c("Subject", "Activity", volFeaturesNeeded)
+colnames(combinedSets) <- c("subject", "activity", volFeaturesNeeded)
 
 #Factoring the sets
-combinedSets$Subject <- as.factor(combinedSets$Subject)
-combinedSets$Activity <- as.factor(combinedSets$Activity)
+combinedSets$subject <- as.factor(combinedSets$subject)
+combinedSets$activity <- as.factor(combinedSets$activity)
+
+#Melting data
+meltedData <- melt(combinedSets, id=c("subject", "activity"))
+tidyData <- dcast(meltedData, Subject + Activity ~ variable, mean)
 
 #Writing to the tidy.txt file
 write.table(combinedSets, "tidy.txt", row.names=FALSE, quote=FALSE)
